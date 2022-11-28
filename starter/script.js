@@ -88,9 +88,17 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+
+
+  
 // Function to prompt user for password options
-function getPasswordOptions() {
-}
+const pwdLength = parseInt(prompt(`How long would you like your password to be? Min 10 characters`));
+const ifLowerCase = prompt(`Would you like your password to include lower case letters?`);
+const ifUpperCase = prompt(`Would you like your password to include upper case letters?`);
+const ifNumeric = prompt(`Would you like your password to include numbers?`);
+const ifSpecialChar = prompt(`Would you like your password to include special characters? eg $@%&`);  
+ 
+
 
 // Function for getting a random element from an array
 function getRandom(arr) {
@@ -98,16 +106,32 @@ function getRandom(arr) {
 }
 
 // Function to generate password with user input
-function generatePassword() {
-    pwd = prompt(`How long would you like your password to be? Min 10 characters`);
-    ifLowerCase = prompt(`Would you like your password to include lower case letters?`);
-    ifUpperCase = prompt(`Would you like your password to include upper case letters?`);
-    ifNumeric = prompt(`Would you like your password to include numbers?`);
-    ifSpecialChar = prompt(`Would you like your password to include special characters? eg $@%&`);
 
+    const generatePassword = (pwdLength, ifLowerCase, ifUpperCase, ifNumeric, ifSpecialChar) => {
+      const availableChars = [
+        ...(ifLowerCase ? lowerCasedCharacters : []),
+        ...(ifUpperCase ? upperCasedCharacters : []),
+        ...(ifNumeric ? numericCharacters : []),
+        ...(ifSpecialChar ? specialCharacters : []),
+      ];
+      
+      let password = ``;
 
-  return "Generated password";
+      if(availableChars.length === 0) return "";
+
+      for(let i = 0; i < pwdLength.length; i++){
+          const randomIndex = Math.floor(math.getRandom() * availableChars.length);
+          password += availableChars[randomIndex];
+      
+      }
+ 
+  
+
+  console.log(generatePassword);
 }
+  
+
+
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
@@ -122,3 +146,4 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
+
