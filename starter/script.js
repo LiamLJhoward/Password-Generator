@@ -97,6 +97,7 @@ function generatePassword(){
       ifUpperCase = confirm(`Would you like your password to include upper case letters?`),
       ifNumeric = confirm(`Would you like your password to include numbers?`),
       ifSpecialChar = confirm(`Would you like your password to include special characters? eg $@%&`); 
+      console.log(pwdLength, ifLowerCase, ifUpperCase, ifNumeric, ifSpecialChar);
      }
 
 
@@ -108,6 +109,7 @@ function getRandom(arr) {
     ...(ifNumeric ? numericCharacters : []),
     ...(ifSpecialChar ? specialCharacters : []),
   ];
+  console.log(availableChars);
 }
 
 // Get references to the #generate element
@@ -121,7 +123,8 @@ function writePassword() {
   password = "";
 
   for(let i = 0; i < pwdLength.length; i++){
-      let randomIndex = Math.floor(math.getRandom() * availableChars.length);
+    console.log(availableChars);  
+    let randomIndex = Math.floor(math.getRandom() * availableChars.length);
       password += availableChars[randomIndex];
     
   }
