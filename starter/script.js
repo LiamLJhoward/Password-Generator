@@ -90,25 +90,13 @@ var upperCasedCharacters = [
 
 
 
-  
-// // Function to prompt user for password options
-// const pwdLength = parseInt(prompt(`How long would you like your password to be? Min 10 characters`));
-// const ifLowerCase = prompt(`Would you like your password to include lower case letters?`);
-// const ifUpperCase = prompt(`Would you like your password to include upper case letters?`);
-// const ifNumeric = prompt(`Would you like your password to include numbers?`);
-// const ifSpecialChar = prompt(`Would you like your password to include special characters? eg $@%&`);  
- 
-
-
-
-
 // Function to generate password with user input
 function generatePassword(){
       pwdLength = parseInt(prompt(`How long would you like your password to be? Min 10 characters`)), 
-      ifLowerCase = prompt(`Would you like your password to include lower case letters?`),
-      ifUpperCase = prompt(`Would you like your password to include upper case letters?`),
-      ifNumeric = prompt(`Would you like your password to include numbers?`),
-      ifSpecialChar = prompt(`Would you like your password to include special characters? eg $@%&`); 
+      ifLowerCase = confirm(`Would you like your password to include lower case letters?`),
+      ifUpperCase = confirm(`Would you like your password to include upper case letters?`),
+      ifNumeric = confirm(`Would you like your password to include numbers?`),
+      ifSpecialChar = confirm(`Would you like your password to include special characters? eg $@%&`); 
      }
 
 
@@ -129,9 +117,7 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
-
-  passwordText.value = password;
-
+  
   password = "";
 
   for(let i = 0; i < pwdLength.length; i++){
@@ -140,7 +126,9 @@ function writePassword() {
     
   }
 
-  return(passwordText.value);
+  passwordText.value = password;
+
+  return (passwordText.value);
 }
 
 // Add event listener to generate button
