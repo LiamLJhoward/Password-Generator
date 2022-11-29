@@ -96,20 +96,28 @@ function generatePassword(){
       ifLowerCase = confirm(`Would you like your password to include lower case letters?`),
       ifUpperCase = confirm(`Would you like your password to include upper case letters?`),
       ifNumeric = confirm(`Would you like your password to include numbers?`),
-      ifSpecialChar = confirm(`Would you like your password to include special characters? eg $@%&`); 
+      ifSpecialChar = confirm(`Would you like your password to include special characters? eg $@%&`)
       console.log(pwdLength, ifLowerCase, ifUpperCase, ifNumeric, ifSpecialChar);
+      getRandom(ifLowerCase, ifUpperCase, ifNumeric, ifSpecialChar);
      }
 
-
 // Function for getting a random element from an array
-function getRandom(arr) {
+function getRandom(ifLowerCase, ifUpperCase, ifNumeric, ifSpecialChar){
     const availableChars = [
     ...(ifLowerCase ? lowerCasedCharacters : []),
     ...(ifUpperCase ? upperCasedCharacters : []),
     ...(ifNumeric ? numericCharacters : []),
     ...(ifSpecialChar ? specialCharacters : []),
   ];
-  console.log(availableChars);
+  for(let i = 0; i < pwdLength; i++){
+    let randomIndex = Math.floor(Math.random() * availableChars.length);
+    console.log(randomIndex);
+      password += availableChars[randomIndex];
+    
+  }
+  
+  alert(password);
+  return password;
 }
 
 // Get references to the #generate element
@@ -119,19 +127,12 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
-  
-  password = "";
 
-  for(let i = 0; i < pwdLength.length; i++){
-    console.log(availableChars);  
-    let randomIndex = Math.floor(math.getRandom() * availableChars.length);
-      password += availableChars[randomIndex];
-    
-  }
+
 
   passwordText.value = password;
 
-  return (passwordText.value);
+  return passwordText.value;
 }
 
 // Add event listener to generate button
